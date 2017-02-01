@@ -175,41 +175,66 @@
       }
 
       function buildHTML(json) {
-        var default_class = ed.getParam("uploadimage_default_img_class", "");
-        var figure = ed.getParam("uploadimage_figure", false);
-        var alt_text = getInputValue("alt");
+        $figure     = $('<figure>');
+        $image      = $('<img class="b-lazy">');
+        figcaption    = $('<figcaption>').text("Add caption");
 
-        var imgstr = "<img src='" + json["image"]["url"] + "'";
+        $image.attr('data-src-small', json["image"]["mobile"]);
+        $image.attr('data-src-tablet', json["image"]["tablet"]);
+        $image.attr('data-src', json["image"]["desktop"]);
+        $image.attr('src', json["image"]["mobile"]);
+        $image.appendTo($figure);
+        figcaption.appendTo($figure);
+        bLazy.revalidate()
 
-        if(default_class != "")
-          imgstr += " class='" + default_class + "'";
 
-        if(json["image"]["height"])
-          imgstr += " height='" + json["image"]["height"] + "'";
-        if(json["image"]["width"])
-          imgstr += " width='"  + json["image"]["width"]  + "'";
 
-        imgstr += " alt='" + alt_text + "'/>";
 
-        if(figure) {
-          var figureClass = ed.getParam("uploadimage_figure_class", "figure");
-          var figcaptionClass = ed.getParam("uploadimage_figcaption_class", "figcaption");
+        // var imgstr  = "<img src='" + json["image"]["url"] + "'";
+        // var default_class = ed.getParam("uploadimage_default_img_class", "");
+        // var figure = ed.getParam("uploadimage_figure", false);
+        // var alt_text = getInputValue("alt");
 
-          var figstr = "<figure";
+        // var imgstr = "<img src='" + json["image"]["url"] + "'";
 
-          if (figureClass !== "")
-            figstr += " class='" + figureClass + "'";
-          figstr += ">" + imgstr;
-          figstr += "<figcaption";
-          if (figcaptionClass != "")
-            figstr += " class='" + figcaptionClass + "'";
-          figstr += ">" + alt_text + "</figcaption>";
-          figstr += "</figure>";
+        // if(default_class != "")
+        //   imgstr += " class='" + default_class + "'";
 
-          return figstr;
-        } else {
-          return imgstr;
-        }
+        // if(json["image"]["height"])
+        //   imgstr += " height='" + json["image"]["height"] + "'";
+        // if(json["image"]["width"])
+        //   imgstr += " width='"  + json["image"]["width"]  + "'";
+
+        // imgstr += " alt='" + alt_text + "'/>";
+
+        // if(figure) {
+        //   var figureClass = ed.getParam("uploadimage_figure_class", "figure");
+        //   var figcaptionClass = ed.getParam("uploadimage_figcaption_class", "figcaption");
+
+        //   var figstr = "<figure";
+
+        //   if (figureClass !== "")
+        //     figstr += " class='" + figureClass + "'";
+        //   figstr += ">" + imgstr;
+        //   figstr += "<figcaption";
+        //   if (figcaptionClass != "")
+        //     figstr += " class='" + figcaptionClass + "'";
+        //   figstr += ">" + alt_text + "</figcaption>";
+        //   figstr += "</figure>";
+
+        // }
+
+        // console.log(imgstr);
+        // console.log(figstr);
+
+        console.log($figure[0].outerHTML);
+        return $figure[0].outerHTML;
+
+
+        //   return figstr;
+        // } else {
+        //   return imgstr;
+        // }
       }
 
       function getInputValue(name) {
