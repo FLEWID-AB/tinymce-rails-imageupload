@@ -187,11 +187,6 @@
         $image.attr('src', json["image"]["mobile"]);
         $image.appendTo($figure);
         figcaption.appendTo($figure);
-        bLazy.revalidate()
-
-
-
-
         // var imgstr  = "<img src='" + json["image"]["url"] + "'";
         // var default_class = ed.getParam("uploadimage_default_img_class", "");
         // var figure = ed.getParam("uploadimage_figure", false);
