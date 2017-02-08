@@ -136,7 +136,9 @@
 
       function handleResponse(ret) {
         try {
+          console.log(ret);
           var json = tinymce.util.JSON.parse(ret);
+          console.log(json);
 
           if(json["error"]) {
             handleError(json["error"]["message"]);
